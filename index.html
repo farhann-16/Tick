@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#F4F1EA">
+    <meta name="description" content="A private space for the things you mean to keep doing.">
+    <title>Tick — a little room for progress</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232f5d50'/%3E%3Cpath d='m17 33 10 10 21-23' fill='none' stroke='%23fbf9f4' stroke-linecap='round' stroke-linejoin='round' stroke-width='5'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#main" aria-label="Tick home">
+          <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 30 30"><circle cx="15" cy="15" r="12.2"/><path d="m9.3 15.3 3.8 3.8 7.8-8.2"/></svg></span>
+          <span>tick<span class="brand-period">.</span></span>
+        </a>
+        <div class="header-date" id="header-date"></div>
+        <nav class="primary-nav" aria-label="Main sections">
+          <button class="nav-tab active" type="button" data-section="goals" aria-current="page">Goals <span class="nav-count" id="goal-count">0</span></button>
+          <button class="nav-tab" type="button" data-section="daily">Daily</button>
+        </nav>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme" title="Switch color theme"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg></button>
+      </header>
+
+      <main id="main" class="main-content">
+        <section id="goals-section" class="view-section" aria-labelledby="page-title">
+          <div class="page-intro">
+            <div class="intro-copy">
+              <p class="eyebrow">A little at a time</p>
+              <h1 id="page-title">Things worth<br class="mobile-break"> seeing through.</h1>
+              <p class="intro-subtitle">Keep the bigger picture close, and the next step small.</p>
+            </div>
+            <div class="intro-aside"><span class="aside-rule"></span><span id="goal-summary">Your goals, in one place.</span></div>
+          </div>
+          <div class="section-heading">
+            <div><span class="section-kicker">01 / LONGER VIEW</span><h2>Your goals</h2></div>
+            <button class="button button-primary" id="add-goal" type="button"><span class="plus" aria-hidden="true">+</span> Add a goal</button>
+          </div>
+          <section class="goal-progress-panel" id="goal-progress-panel" aria-labelledby="goal-progress-title" hidden>
+            <div class="goal-chart-heading">
+              <div><span class="section-kicker">A CLEARER PICTURE</span><h3 id="goal-progress-title">Goal progress</h3></div>
+              <span class="chart-hint">Select a goal to jump to it</span>
+            </div>
+            <div id="goals-progress-chart" class="goals-progress-chart"></div>
+          </section>
+          <div class="goals-grid" id="goals-list"></div>
+        </section>
+
+        <section id="daily-section" class="view-section" aria-labelledby="daily-title" hidden>
+          <div class="page-intro daily-intro">
+            <div class="intro-copy">
+              <p class="eyebrow">A rhythm of your own</p>
+              <h1 id="daily-title">Show up, <em>in your way.</em></h1>
+              <p class="intro-subtitle">Small returns add up. Start wherever today finds you.</p>
+            </div>
+            <div class="daily-ring-wrap" id="today-ring-wrap"></div>
+          </div>
+          <div class="daily-toolbar">
+            <div class="date-stepper" aria-label="Choose a day">
+              <button type="button" class="icon-button" data-date-step="-1" aria-label="Previous day"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+              <div class="selected-date" id="selected-date"></div>
+              <button type="button" class="icon-button" data-date-step="1" aria-label="Next day"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+              <button type="button" class="today-button" id="today-button">Today</button>
+            </div>
+            <button class="button button-primary" id="add-habit" type="button"><span class="plus" aria-hidden="true">+</span> Add a habit</button>
+          </div>
+          <div class="daily-layout">
+            <section class="today-panel" aria-labelledby="checklist-title">
+              <div class="section-heading compact-heading"><div><span class="section-kicker">THE CHECK-IN</span><h2 id="checklist-title">For this day</h2></div><span class="daily-count" id="daily-count"></span></div>
+              <div id="daily-checklist" class="daily-checklist"></div>
+            </section>
+            <aside class="daily-note"><span class="note-mark" aria-hidden="true">“</span><p>There is no catching up.<br>There is only today.</p><span class="note-caption">A note to keep nearby</span></aside>
+          </div>
+          <section class="habit-section" aria-labelledby="habits-title">
+            <div class="section-heading compact-heading"><div><span class="section-kicker">YOUR PRACTICE</span><h2 id="habits-title">Habits, over time</h2></div><span class="habit-total" id="habit-total"></span></div>
+            <div id="habits-list" class="habits-list"></div>
+          </section>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <div class="footer-signoff"><span class="footer-mark">tick.</span><span>Private by nature. Stored on this device.</span><span class="footer-credit">Created By Diwan FarhanMadar</span></div>
+        <div class="footer-actions">
+          <button type="button" class="text-button" id="export-data">Export data</button>
+          <button type="button" class="text-button" id="import-trigger">Import data</button>
+          <input type="file" id="import-file" accept="application/json,.json" hidden>
+        </div>
+      </footer>
+    </div>
+
+    <dialog id="editor-dialog" class="editor-dialog" aria-labelledby="dialog-title">
+      <form id="editor-form" class="editor-form" novalidate>
+        <div class="dialog-heading"><div><span class="section-kicker" id="dialog-kicker">NEW ENTRY</span><h2 id="dialog-title">Add a goal</h2></div><button type="button" class="icon-button close-dialog" aria-label="Close dialog"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+        <div id="form-fields"></div>
+        <p class="form-error" id="form-error" role="alert"></p>
+        <div class="dialog-actions"><button type="button" class="button button-quiet close-dialog">Cancel</button><button type="submit" class="button button-primary" id="save-entry">Save goal</button></div>
+      </form>
+    </dialog>
+    <div id="live-message" class="sr-only" role="status" aria-live="polite"></div>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
